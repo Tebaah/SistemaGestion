@@ -73,7 +73,7 @@
                                 <td><?= $datos->rut ?></td>
                                 <td><?= $datos->nombre ?></td>
                             <td>
-                                <a class="btn btn-success" href="contactos.php?id=<?= $datos->id_empresas ?>"><i class="bi bi-person-plus-fill"></i></a>
+                                <a class="btn btn-success" href="contactos.php?id=<?= $datos->id_empresa ?>"><i class="bi bi-person-plus-fill"></i></a>
                             </td>
                             </tr>
                         <?php }
