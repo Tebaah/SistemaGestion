@@ -8,9 +8,9 @@
     <link href="estilos/style.css" rel="stylesheet">
     <title>Sistema de Gestion</title>
 </head>
-<body class="bg-body-secondary">
+<body class="bg-dark">
     <head>
-        <nav class="navbar bg-body-tertiary">
+        <nav class="navbar bg-dark">
             <form class="container-fluid justify-content-end">
                 <a class="btn btn-secondary m-1" href="../index.php" role="button">HOME</a>
                 <a class="btn btn-secondary m-1" href="#" role="button">COTIZACIONES</a>
@@ -25,7 +25,7 @@
                 <!-- Formulario de ingreso clientes -->
                 <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                         <!-- Titulo formulario -->
-                        <h2 class="text-center">Ingreso de clientes</h2>
+                        <h2 class="text-center">Ingreso de empresas</h2>
                         <!-- Formulario -->
                     <form method="POST">
                         <?php
@@ -44,7 +44,7 @@
                             <input type="text" class="form-control" name="nombreEmpresa">
                             <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div>
                         </div>
-                        <!-- Botones acciones formulario -->
+                        <!-- Botones registrar empresa -->
                         <button type="submit" class="btn btn-primary mb-3" name="btnRegistrar" value="ok">Ingresar</button>                        
                     </form>
                 </div>
