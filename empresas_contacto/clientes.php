@@ -13,7 +13,7 @@
         <nav class="navbar bg-dark">
             <form class="container-fluid justify-content-end">
                 <a class="btn btn-secondary m-1" href="../index.php" role="button">HOME</a>
-                <a class="btn btn-secondary m-1" href="#" role="button">COTIZACIONES</a>
+                <a class="btn btn-secondary m-1" href="../cotizacion/cotizacion.php" role="button">COTIZACIONES</a>
             </form>
             </nav>
     </head>
@@ -21,7 +21,7 @@
         <!-- Contenedor pagina-->
         <div class="d-flex row global justify-content-center align-items-stretch m-5">
             <!-- Contenedor ingreso de clientes -->
-            <div class="col-5 m-1">
+            <div class="col-xxl-5 m-1">
                 <!-- Formulario de ingreso clientes -->
                 <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                         <!-- Titulo formulario -->
@@ -40,7 +40,7 @@
                         </div>
                         <!-- Casilla nombre -->
                         <div class="mb-3">
-                            <label for="nombreEmpresa" class="form-label">Rut Empresa</label>
+                            <label for="nombreEmpresa" class="form-label">Nombre Empresa</label>
                             <input type="text" class="form-control" name="nombreEmpresa">
                             <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div>
                         </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <!-- Contenedor resumen de clientes -->
-            <div class="col-5 m-1">
+            <div class="col-xxl-5 m-1">
                 <!-- Tabla de resumen de clientes -->
                 <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                         <!-- Titulo tabla -->
@@ -85,13 +85,13 @@
 
                                 if(isset($_GET['btnBuscar']) and !empty($buscar))
                                 {                                                                   
-                                    $sql = $conn->query(" SELECT * FROM empresas WHERE rut LIKE '%$buscar%'");
+                                    $sql = $conn->query(" SELECT * FROM empresas WHERE rut_empresa LIKE '%$buscar%'");
 
                                     // recorremos los datos para insertarlos en la tabla
                                     while($datos = $sql->fetch_object()) { ?>
                                     <tr>                                
-                                        <td><?= $datos->rut ?></td>
-                                        <td><?= $datos->nombre ?></td>
+                                        <td><?= $datos->rut_empresa ?></td>
+                                        <td><?= $datos->nombre_empresa ?></td>
                                     <td>
                                         <a class="btn btn-success" href="contactos.php?id=<?= $datos->id_empresa ?>"><i class="bi bi-person-plus-fill"></i></a>
                                     </td>

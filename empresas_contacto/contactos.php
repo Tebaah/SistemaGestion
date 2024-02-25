@@ -89,9 +89,9 @@ $idEmpresa = $_GET["id"];
                             $sql = $conn->query(" SELECT * FROM contactos WHERE id_empresas = $idEmpresa");
                             while($datos = $sql->fetch_object()) { ?>
                                 <tr>
-                                    <td><?= $datos->nombre ?></td>
-                                    <td><?= $datos->telefono ?></td>
-                                    <td><?= $datos->email ?></td>
+                                    <td><?= $datos->nombre_contacto ?></td>
+                                    <td><?= $datos->telefono_contacto ?></td>
+                                    <td><?= $datos->email_contacto ?></td>
                                 <td>
                                     <a class="btn btn-warning" href="contactos_modificar.php?id=<?= $datos->id_contacto ?>"><i class="bi bi-person-fill-gear"></i></a>
                                     <a class="btn btn-danger" href=""><i class="bi bi-person-dash-fill"></i></a>
