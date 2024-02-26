@@ -35,8 +35,8 @@
                                 // recorremos los datos para insertarlos en la tabla
                                 while($datos = $sql->fetch_object()) { ?>
                                     <tr>                                
-                                        <td><?= $datos->rut ?></td>
-                                        <td><?= $datos->nombre ?></td>
+                                        <td><?= $datos->rut_empresa ?></td>
+                                        <td><?= $datos->nombre_empresa ?></td>
                                     <td>
                                         <a class="btn btn-success" href="contactos.php?id=<?= $datos->id_empresa ?>"><i class="bi bi-person-plus-fill"></i></a>
                                     </td>

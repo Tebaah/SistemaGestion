@@ -11,7 +11,7 @@ if(!empty($_POST["btnRegistrar"]))
         $telefonoContacto = $_POST["telefonoContacto"];
         $emailContacto = $_POST["emailContacto"];
 
-        $sql = $conn->query(" INSERT INTO `contactos`(`id_empresas`, `nombre`, `telefono`, `email`) VALUES ('$idEmpresa','$nombreContacto','$telefonoContacto','$emailContacto')");
+        $sql = $conn->query(" INSERT INTO `contactos`(`id_empresas`, `nombre_contacto`, `telefono_contacto`, `email_contacto`) VALUES ('$idEmpresa','$nombreContacto','$telefonoContacto','$emailContacto')");
         if($sql == 1)
         {
             echo '<div class="alert alert-success"> Contacto registrado</div>';

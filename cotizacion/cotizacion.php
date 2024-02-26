@@ -46,9 +46,21 @@
                             </div>
                             <!-- Casilla ejecutivos -->
                             <div class="mb-3 col-3">
-                                <label for="ejecutivosCotizacion" class="form-label">Ejecutivos Empresa</label>
+                                <select class="form-select" name="ejecutivosCotizacion" id="" required>
+                                    <!-- <option value="">Sistema</option> -->
+                                    <?php
+                                        $valueSelect = $conn->query(" SELECT * FROM ejecutivo_comercial ");
+                                        while($datosEjecutivo = $valueSelect->fetch_object()){
+                                    ?>
+                                    <option value="<?php echo $datosEjecutivo->id_ejecutivo?>"><?php echo $datosEjecutivo->id_ejecutivo?></option>
+                                    <?php }?>
+                                </select>
+
+
+
+                                <!-- <label for="ejecutivosCotizacion" class="form-label">Ejecutivos Empresa</label>
                                 <input type="text" class="form-control" name="ejecutivosCotizacion">
-                                <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div>
+                                <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div> -->
                             </div>
                             <!-- Casilla direccion -->
                             <div class="mb-3 col-3">
@@ -110,11 +122,16 @@
 
                                     if(isset($_GET['btnBuscar']) and !empty($buscarEmpresa))
                                     {
+                                        // Busqueda de empresa para obtener id
+                                        $idConsulta = $conn->query(" SELECT id_empresa FROM empresas WHERE rut_empresa LIKE '%$buscarEmpresa%' OR nombre_empresa LIKE '%$buscarEmpresa%'");
+                                        $datoConsulta = $idConsulta->fetch_object();
+                                                     
 
-                                        $sql = $conn->query(" SELECT * FROM empresas e INNER JOIN contactos c WHERE e.rut_empresa LIKE '%$buscarEmpresa%'");
+                                        // Busqueda del rut o nombre de empresa en base de datos
+                                        $sql = $conn->query(" SELECT * FROM contactos c INNER JOIN empresas e ON c.id_empresas = e.id_empresa WHERE c.id_empresas LIKE $datoConsulta->id_empresa");
 
 
-                                        // recorremos los datos para insertarlos en la tabla
+                                        // Recorremos los datos para insertarlos en la tabla
                                         while($datos = $sql->fetch_object()) { ?>
                                         <tr>
                                             <td><?= $datos->rut_empresa ?></td>                              

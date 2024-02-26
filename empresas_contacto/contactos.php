@@ -17,7 +17,7 @@ $idEmpresa = $_GET["id"];
         <nav class="navbar bg-dark">
             <form class="container-fluid justify-content-end">
                 <a class="btn btn-secondary m-1" href="../index.php" role="button">HOME</a>
-                <a class="btn btn-secondary m-1" href="#" role="button">COTIZACIONES</a>
+                <a class="btn btn-secondary m-1" href="../cotizacion/cotizacion.php" role="button">COTIZACIONES</a>
                 <a class="btn btn-secondary m-1" href="clientes.php" role="button">CLIENTES</a>
             </form>
             </nav>

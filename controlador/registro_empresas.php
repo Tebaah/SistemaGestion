@@ -9,7 +9,7 @@ if(!empty($_POST["btnRegistrar"]))
         $rutEmpresa = $_POST["rutEmpresa"];
         $nombreEmpresa = $_POST["nombreEmpresa"];
 
-        $sql = $conn->query(" INSERT INTO `empresas`(`rut`, `nombre`) VALUES ('$rutEmpresa','$nombreEmpresa')");
+        $sql = $conn->query(" INSERT INTO `empresas`(`rut_empresa`, `nombre_empresa`) VALUES ('$rutEmpresa','$nombreEmpresa')");
         if($sql == 1)
         {
             echo '<div class="alert alert-success"> Empresa registrada</div>';
