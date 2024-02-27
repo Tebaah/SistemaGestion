@@ -85,7 +85,7 @@
 
                                 if(isset($_GET['btnBuscar']) and !empty($buscar))
                                 {                                                                   
-                                    $sql = $conn->query(" SELECT * FROM empresas WHERE rut_empresa LIKE '%$buscar%'");
+                                    $sql = $conn->query(" SELECT * FROM empresas WHERE rut_empresa LIKE '%$buscar%' OR nombre_empresa LIKE '%$buscar%'");
 
                                     // recorremos los datos para insertarlos en la tabla
                                     while($datos = $sql->fetch_object()) { ?>

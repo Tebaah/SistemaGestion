@@ -27,27 +27,27 @@
                         <!-- Titulo formulario -->
                         <h2 class="text-center">Ingreso de cotizacion</h2>
                         <!-- Formulario -->
-                        <form method="POST">
+                        <form class="row" method="POST">
                             <?php
                             include "../conexiones/conexion.php";
                             include "../controlador/registro_cotizacion.php";
                             ?>
                             <!-- Casilla fecha -->
-                            <div class="mb-3 col-3">
+                            <div class="mb-3 col-4">
                                 <label for="fechaCotizacion" class="form-label">Fecha</label>
                                 <input type="date" class="form-control" name="fechaCotizacion" id="rutEmpresa">
-                                <div id="rutHelp" class="form-text">Fecha cotizacion.</div>
+                                <div id="rutHelp" class="form-text">Ingresa la fecha cotizacion.</div>
                             </div>
                             <!-- Casilla id contactos -->
-                            <div class="mb-3 col-3">
+                            <div class="mb-3 col-4">
                                 <label for="contactoCotizacion" class="form-label">Contacto Empresa</label>
                                 <input type="text" class="form-control" name="contactoCotizacion">
                                 <div id="rutHelp" class="form-text">Ingresa id contacto de buscador.</div>
                             </div>
                             <!-- Casilla ejecutivos -->
-                            <div class="mb-3 col-3">
+                            <div class="mb-3 col-4">
+                                <label for="ejecutivosCotizacion" class="form-label">Codigo ejecutivo</label>
                                 <select class="form-select" name="ejecutivosCotizacion" id="" required>
-                                    <!-- <option value="">Sistema</option> -->
                                     <?php
                                         $valueSelect = $conn->query(" SELECT * FROM ejecutivo_comercial ");
                                         while($datosEjecutivo = $valueSelect->fetch_object()){
@@ -55,33 +55,31 @@
                                     <option value="<?php echo $datosEjecutivo->id_ejecutivo?>"><?php echo $datosEjecutivo->id_ejecutivo?></option>
                                     <?php }?>
                                 </select>
-
-
-
-                                <!-- <label for="ejecutivosCotizacion" class="form-label">Ejecutivos Empresa</label>
-                                <input type="text" class="form-control" name="ejecutivosCotizacion">
-                                <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div> -->
+                                <div id="rutHelp" class="form-text">Selecciona el codigo.</div>
                             </div>
                             <!-- Casilla direccion -->
-                            <div class="mb-3 col-3">
+                            <div class="mb-3 col-12">
                                 <label for="direccionCotizacion" class="form-label">Direccion faena</label>
                                 <input type="text" class="form-control" name="direccionCotizacion">
                                 <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div>
                             </div>
                             <!-- Casilla detalle -->
-                            <div class="mb-3 col-3">
+                            <div class="mb-3 col-6">
                                 <label for="detalleCotizacion" class="form-label">Detalle faena</label>
-                                <input type="text" class="form-control" name="detalleCotizacion">
+                                <textarea class="form-control" rows="3" name="detalleCotizacion"></textarea>
                                 <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div>
                             </div>
                             <!-- Casilla notas -->
-                            <div class="mb-3 col-3">
+                            <div class="mb-3 col-6">
                                 <label for="notasCotizacion" class="form-label">Notas faena</label>
-                                <input type="text" class="form-control" name="notasCotizacion">
+                                <textarea class="form-control" rows="3" name="notasCotizacion"></textarea>
                                 <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div>
                             </div>
-                            <!-- Botones registrar empresa -->
-                            <button type="submit" class="btn btn-primary mb-3" name="btnRegistrar" value="ok">Ingresar</button>                        
+                            <div class="mb-3 col-6">
+                                <!-- Botones registrar empresa -->
+                                <button type="submit" class="btn btn-primary mb-3" name="btnRegistrar" value="ok">Ingresar</button>   
+                            </div>
+                     
                         </form>
                 </div>
             </div>
@@ -93,7 +91,7 @@
                             <h2 class="text-center">Buscador de contactos</h2>
                             <!-- Casilla para buscar -->
                                 <form method="GET">
-                                    <div class="mb-3 col-4">
+                                    <div class="mb-3 col-6">
                                         <label for="buscarContacto" class="form-label">Buscar contactos</label>
                                         <input type="text" class="form-control" name="buscarContacto">
                                         <div id="rutHelp" class="form-text">Ingresar rut de empresa sin punto y con guion.</div>
@@ -159,11 +157,11 @@
                         <h2 class="text-center">Buscador de cotizaciones</h2>
                         <!-- Casilla para buscar -->
                             <form method="GET">
-                                <div class="mb-3 col-4">
+                                <!-- <div class="mb-3 col-4">
                                     <label for="buscarEmpresa" class="form-label">Buscar Empresa</label>
                                     <input type="text" class="form-control" name="buscarEmpresa">
                                     <div id="rutHelp" class="form-text">Sin punto y con guion.</div>
-                                </div>
+                                </div> -->
                                 <!-- Boton de busqueda -->
                                 <button type="submit" class="btn btn-primary mb-3" name="btnBuscar" value="Buscar">Buscar</button>
                             </form>
@@ -172,9 +170,11 @@
                             <!-- encabezado de la tabla -->
                             <thead">
                                 <tr>
-                                <th scope="col">RUT</th>
+                                <th scope="col">NUMERO</th>
+                                <th scope="col">FECHA</th>
                                 <th scope="col">EMPRESA</th>
-                                <th scope="col">CONTACTO</th>
+                                <th scope="col">DIRECCION</th>
+                                <th scope="col">INSERTAR TONELAJES</th>
                                 </tr>
                             </thead>
                             <!-- cuerpo de la tabla -->
@@ -183,19 +183,22 @@
                                 // conectamos con base de datos y ejecutamos query para obtner los datos
                                 include "../conexiones/conexion.php"; 
                                 
-                                $buscar = $_GET['buscarEmpresa'];
+                                // $buscar = $_GET['buscarEmpresa'];
 
-                                if(isset($_GET['btnBuscar']) and !empty($buscar))
+                                if(isset($_GET['btnBuscar']))
                                 {                                                                   
-                                    $sql = $conn->query(" SELECT * FROM empresas WHERE rut LIKE '%$buscar%'");
+                                    $sql = $conn->query(" SELECT * FROM cotizacion c INNER JOIN contactos co on c.id_contactos = co.id_contacto INNER JOIN empresas e ON co.id_empresas = e.id_empresa ORDER BY c.id_cotizacion DESC");
 
                                     // recorremos los datos para insertarlos en la tabla
                                     while($datos = $sql->fetch_object()) { ?>
                                     <tr>                                
-                                        <td><?= $datos->rut ?></td>
-                                        <td><?= $datos->nombre ?></td>
+                                        <td><?= $datos->id_cotizacion ?></td>
+                                        <td><?= $datos->fecha ?></td>
+                                        <td><?= $datos->nombre_empresa ?></td>
+                                        <td><?= $datos->direccion ?></td>
+
                                     <td>
-                                        <a class="btn btn-success" href="contactos.php?id=<?= $datos->id_empresa ?>"><i class="bi bi-person-plus-fill"></i></a>
+                                        <a class="btn btn-success" href="tonelajes.php?id=<?= $datos->id_cotizacion ?>"><i class="bi bi-file-plus-fill"></i></a>
                                     </td>
                                     </tr>
                                 <?php }                                                                            
