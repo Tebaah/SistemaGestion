@@ -32,37 +32,79 @@ $idCotizacion = $_GET["id"];
                     <!-- Titulo formulario -->
                     <h2 class="text-center">Ingreso de contactos</h2>
                     <!-- Formulario -->
-                    <form method="POST">
+                    <form class= "row" method="POST">
                         <?php
                         include "../conexiones/conexion.php";
-                        include "../controlador/registro_contactos.php";
+                        include "../controlador/registro_tonelajes.php";
                         ?>
-                        <!-- Casilla para obtener id empresa y referenciar -->
-                        <div class="mb-3 col">
-                            <input type="hidden" name="idEmpresa" value="<?= $_GET["id"] ?>">
+                        <!-- Casilla id cotizacion -->
+                        <div class="mb-3 col-2">
+                            <label for="idCotizacion" class="form-label">Numero</label>
+                            <input type="text" class="form-control" name="idCotizacion" value="<?= $_GET["id"] ?>" disable readonly>
                             <!-- <div id="rutHelp" class="form-text">Sin punto y con guion.</div> -->
                         </div>
-                        <!-- Casilla nombre -->
-                        <div class="mb-3 col-6">
-                            <label for="rutEmpresa" class="form-label">Nombre contacto</label>
-                            <input type="text" class="form-control" name="nombreContacto">
-                            <div id="rutHelp" class="form-text">Ejemplo: Carlos Contreras.</div>
+
+                        <!-- Select option para buscar codigo de tonelaje -->
+                        <div class="mb-3 col-2">
+                                <label for="buscadorCodigo" class="form-label">Codigo tonelaje</label>
+                                <select class="form-select" name="buscadorCodigo" id="" required>
+                                    <option>Selecciona un codigo</option>
+                                    <?php
+                                        $codigoTonelaje = $conn->query(" SELECT * FROM valor_tonelaje ");
+                                        while($datosTonelaje = $codigoTonelaje->fetch_object()){
+                                    ?>
+                                    <option value="<?php echo $datosTonelaje->id_tonelaje?>"><?php echo $datosTonelaje->id_tonelaje?></option>
+                                    <?php }?>
+                                </select>
+                                <div id="rutHelp" class="form-text">Selecciona el codigo.</div>
                         </div>
-                        <!-- Casilla telefono -->
-                        <div class="mb-3 col-6">
-                            <label for="nombreEmpresa" class="form-label">Telefono contacto</label>
-                            <input type="text" class="form-control" name="telefonoContacto">
-                            <div id="rutHelp" class="form-text">Maximimo 9 caracteres ejemplo: 912345678.</div>
+                        <div class="mb-3 col-1">                  
+                        <!-- Boton registrar contacto -->
+                        <label for="" class="form-label">Agregar</label>
+                        <button type="submit" class="btn btn-primary" name="btnBuscar" value="ok"><i class="bi bi-plus-square-fill"></i></button>
                         </div>
-                        <!-- Casilla email -->
-                        <div class="mb-3 col-6">
-                            <label for="nombreEmpresa" class="form-label">Email contacto</label>
-                            <input type="email" class="form-control" name="emailContacto">
-                            <div id="rutHelp" class="form-text">Recuerde caracter fundamental "@".</div>
+                        <?php
+                        if(isset($_POST['btnBuscar']) and !empty($_POST["buscadorCodigo"]))
+                        {
+                            $valorBuscado = $conn->query("SELECT * FROM valor_tonelaje WHERE id_tonelaje LIKE '%$datosTonelaje->id_tonelaje%'");
+                            $insertarInputs = $valorBuscado->fetch_object();
+                        }
+                        ?>
+
+                        <!-- Casilla codigo tonelaje -->
+                        <div class="mb-3 col-1">
+                        <label for="" class="form-label"></label>
+                            <input type="hidden" class="form-control" name="codigoTonelaje" value="<?= $insertarInputs->id_tonelaje ?>">
                         </div>
 
+                        <!-- Casilla detalle tonelaje -->
+                        <div class="mb-3 col-6">
+                            <label for="detalleTonelaje" class="form-label">Detalle del tonelaje</label>
+                            <input type="text" class="form-control" name="detalleTonelaje" value="<?= $insertarInputs->detalle ?>" disable readonly>
+                            <div id="rutHelp" class="form-text">Ejemplo: Carlos Contreras.</div>
+                        </div>
+                        <!-- Casilla unidad de medida -->
+                        <div class="mb-3 col-4">
+                            <label for="unidadMedida" class="form-label">Unidad</label>
+                            <input type="text" class="form-control" name="unidadMedida" value="<?= $insertarInputs->unidad ?>" disable readonly>
+                            <div id="rutHelp" class="form-text">Maximimo 9 caracteres ejemplo: 912345678.</div>
+                        </div>
+                        <!-- Casilla minimo de servicio -->
+                        <div class="mb-3 col-4">
+                            <label for="minimoServicio" class="form-label">Minimo</label>
+                            <input type="text" class="form-control" name="minimoServicio" value="<?= $insertarInputs->minimo ?>">
+                            <div id="rutHelp" class="form-text">Recuerde caracter fundamental "@".</div>
+                        </div>
+                            <!-- Casilla valor del servicio -->
+                        <div class="mb-3 col-4">
+                            <label for="valorServicio" class="form-label">Valor</label>
+                            <input type="text" class="form-control" name="valorServicio" value="<?= $insertarInputs->valor ?>">
+                            <div id="rutHelp" class="form-text">Recuerde caracter fundamental "@".</div>
+                        </div>
+                        <div>                    
                         <!-- Boton registrar contacto -->
-                        <button type="submit" class="btn btn-primary mb-3" name="btnRegistrar" value="ok">Ingresar</button>
+                        <button type="submit" class="btn btn-primary mb-3" name="btnIngresarTonelaje" value="ok">Ingresar</button>
+                        </div>
                     </form>
                 </div>            
             </div>
@@ -71,14 +113,16 @@ $idCotizacion = $_GET["id"];
                 <!-- Tabla de resumen de contactos -->
                 <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                     <!-- Titulo tabla -->
-                    <h2 class="text-center">Resumen de contactos</h2>
+                    <h2 class="text-center">Servicios ingresados</h2>
                     <!-- Tabla -->
                     <table class="table">
                         <thead">
                             <tr>
-                            <th scope="col">NOMBRE</th>
-                            <th scope="col">TELEFONO</th>
-                            <th scope="col">EMAIL</th>
+                            <th scope="col">COD. TONELAJE</th>
+                            <th scope="col">DETALLE</th>
+                            <th scope="col">UNIDAD MEDIDA</th>
+                            <th scope="col">MINIMO</th>
+                            <th scope="col">VALOR HORA</th>
                             <th scope="col"></th>
                             </tr>
                         </thead>
@@ -86,12 +130,14 @@ $idCotizacion = $_GET["id"];
                             <?php
                             // conectamos con base datos y ejecutamos query
                             include "../conexiones/conexion.php";                        
-                            $sql = $conn->query(" SELECT * FROM contactos WHERE id_empresas = $idEmpresa");
+                            $sql = $conn->query(" SELECT * FROM cotizacion_tonelaje WHERE id_cotizaciones = $idCotizacion");
                             while($datos = $sql->fetch_object()) { ?>
                                 <tr>
-                                    <td><?= $datos->nombre_contacto ?></td>
-                                    <td><?= $datos->telefono_contacto ?></td>
-                                    <td><?= $datos->email_contacto ?></td>
+                                    <td><?= $datos->id_tonelaje ?></td>
+                                    <td><?= $datos->detalle ?></td>
+                                    <td><?= $datos->unidad ?></td>
+                                    <td><?= $datos->minimo ?></td>
+                                    <td><?= $datos->valor ?></td>
                                 <td>
                                     <a class="btn btn-warning" href="contactos_modificar.php?id=<?= $datos->id_contacto ?>"><i class="bi bi-person-fill-gear"></i></a>
                                     <a class="btn btn-danger" href=""><i class="bi bi-person-dash-fill"></i></a>
