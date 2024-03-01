@@ -60,7 +60,7 @@
                                 <div class="mb-3 col-4">
                                     <label for="buscarEmpresa" class="form-label">Buscar Empresa</label>
                                     <input type="text" class="form-control" name="buscarEmpresa">
-                                    <div id="rutHelp" class="form-text">Sin punto y con guion.</div>
+                                    <div id="rutHelp" class="form-text">Ingresa rut sin punto y con guion o nombre.</div>
                                 </div>
                                 <!-- Boton de busqueda -->
                                 <button type="submit" class="btn btn-primary mb-3" name="btnBuscar" value="Buscar">Buscar</button>

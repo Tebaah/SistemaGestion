@@ -19,9 +19,9 @@
     </head>
     <main>
         <!-- Contenedor pagina-->
-        <div class="d-flex row global justify-content-center align-items-stretch m-5">
+        <div class="d-flex row justify-content-center align-items-stretch m-5">
             <!-- Contenedor ingreso de cotizaciones -->
-            <div class="col-xxl-5 m-1">
+            <div class="col-xxl-5">
                 <!-- Formulario de ingreso contizacion -->
                 <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                         <!-- Titulo formulario -->
@@ -76,7 +76,7 @@
                                 <div id="rutHelp" class="form-text">Maximo 255 caracteres incluidos espacios.</div>
                             </div>
                             <div class="mb-3 col-6">
-                                <!-- Botones registrar empresa -->
+                                <!-- Boton ingresar cotizacion en bsae de datos -->
                                 <button type="submit" class="btn btn-primary mb-3" name="btnRegistrar" value="ok">Ingresar</button>   
                             </div>
                      
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <!-- Contenedor buscador de contactos -->
-            <div class="col-xxl-5 m-1">
+            <div class="col-xxl-5">
                     <!-- Tabla de resumen de contactos -->
                     <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                             <!-- Titulo tabla -->
@@ -94,10 +94,10 @@
                                     <div class="mb-3 col-6">
                                         <label for="buscarContacto" class="form-label">Buscar contactos</label>
                                         <input type="text" class="form-control" name="buscarContacto">
-                                        <div id="rutHelp" class="form-text">Ingresar rut de empresa sin punto y con guion.</div>
+                                        <div id="rutHelp" class="form-text">Ingresar rut de empresa sin punto y con guion o nombre.</div>
                                     </div>
-                                    <!-- Boton de busqueda -->
-                                    <button type="submit" class="btn btn-primary mb-3" name="btnBuscar" value="Buscar">Buscar</button>
+                                    <!-- Boton de busqueda contacto empresa -->
+                                    <button type="submit" class="btn btn-primary mb-3" name="btnBuscarContacto" value="Buscar">Buscar</button>
                                 </form>
                             <!-- Tabla -->
                             <table class="table p-1">
@@ -118,7 +118,7 @@
                                                                         
                                     $buscarEmpresa = $_GET['buscarContacto'];                                    
 
-                                    if(isset($_GET['btnBuscar']) and !empty($buscarEmpresa))
+                                    if(isset($_GET['btnBuscarContacto']) and !empty($buscarEmpresa))
                                     {
                                         // Busqueda de empresa para obtener id
                                         $idConsulta = $conn->query(" SELECT id_empresa FROM empresas WHERE rut_empresa LIKE '%$buscarEmpresa%' OR nombre_empresa LIKE '%$buscarEmpresa%'");
@@ -148,7 +148,7 @@
                 </div>  
             </div>
         </div>
-        <div class="d-flex row global justify-content-center align-items-stretch m-5">                    
+        <div class="d-flex row justify-content-center align-items-stretch m-5">                    
             <!-- Contenedor resumen de cotizaciones -->
             <div class="col-xxl-10 m-1">
                 <!-- Tabla de resumen de clientes -->
@@ -163,7 +163,7 @@
                                     <div id="rutHelp" class="form-text">Sin punto y con guion.</div>
                                 </div> -->
                                 <!-- Boton de busqueda -->
-                                <button type="submit" class="btn btn-primary mb-3" name="btnBuscar" value="Buscar">Buscar</button>
+                                <button type="submit" class="btn btn-primary mb-3" name="btnBuscarCotizacion" value="Buscar">Buscar</button>
                             </form>
                         <!-- Tabla -->
                         <table class="table p-1">
@@ -185,7 +185,7 @@
                                 
                                 // $buscar = $_GET['buscarEmpresa'];
 
-                                if(isset($_GET['btnBuscar']))
+                                if(isset($_GET['btnBuscarCotizacion']))
                                 {                                                                   
                                     $sql = $conn->query(" SELECT * FROM cotizacion c INNER JOIN contactos co on c.id_contactos = co.id_contacto INNER JOIN empresas e ON co.id_empresas = e.id_empresa ORDER BY c.id_cotizacion DESC");
 

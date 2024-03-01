@@ -19,54 +19,56 @@ $sql = $conn->query("SELECT * FROM `contactos` WHERE id_contacto = $idContacto "
         <nav class="navbar bg-dark">
             <form class="container-fluid justify-content-end">
                 <a class="btn btn-secondary m-1" href="../index.php" role="button">HOME</a>
-                <a class="btn btn-secondary m-1" href="#" role="button">COTIZACIONES</a>
+                <a class="btn btn-secondary m-1" href="../cotizacion/cotizacion.php" role="button">COTIZACIONES</a>
                 <a class="btn btn-secondary m-1" href="clientes.php" role="button">CLIENTES</a>
             </form>
             </nav>
     </head>
     <!-- Contenedor pagina -->
-    <div class="d-flex row global justify-content-center align-items-stretch m-5">
+    <div class="d-flex row  justify-content-center align-items-stretch m-5">
         <!-- Contenedor formuario -->
-        <div class="col-5 m-1">
+        <div class="col-xxl-8 m-1">
             <!-- Formulario de ingreso clientes -->
             <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                 <!-- Titulo formulario -->
                 <h2 class="text-center">Modificar contactos</h2>
+
+
                 <!-- Fromulario -->
                 <form method="POST">
-                    <?php
-                    include "../controlador/modificcar_contactos.php";
-                    while($datos=$sql->fetch_object())
-                    { ?>
-
                     <!-- Casilla para obtener id empresa y referenciar -->
-                    <div class="mb-3 col">
-                        <input type="hidden" name="idContacto" value="<?= $_GET["id"] ?>">
-                    </div>
+                   <input type="text" name="id" value="<?= $_GET["id"] ?>">
+                    <?php
+                    include "../controlador/modificar_contactos.php";
+                    include "../controlador/eliminar_contactos.php";
+
+                    while($datos=$sql->fetch_object()) { ?>
                     <!-- Casilla nombre -->
                     <div class="mb-3 col-6">
                         <label for="nombreContacto" class="form-label">Nombre contacto</label>
-                        <input type="text" class="form-control" name="nombreContacto" value="<?= $datos->nombre ?>">
+                        <input type="text" class="form-control" name="nombreContacto" value="<?= $datos->nombre_contacto ?>">
                         <div id="rutHelp" class="form-text">Ejemplo: Carlos Contreras.</div>
                     </div>
                     <!-- Casilla telefono -->
                     <div class="mb-3 col-6">
                         <label for="telefonoContacto" class="form-label">Telefono contacto</label>
-                        <input type="text" class="form-control" name="telefonoContacto" value="<?= $datos->telefono ?>">
+                        <input type="text" class="form-control" name="telefonoContacto" value="<?= $datos->telefono_contacto ?>">
                         <div id="rutHelp" class="form-text">Maximimo 9 caracteres ejemplo: 912345678.</div>
                     </div>
                     <!-- Casilla email -->
                     <div class="mb-3 col-6">
                         <label for="emailContacto" class="form-label">Email contacto</label>
-                        <input type="email" class="form-control" name="emailContacto" value="<?= $datos->email ?>">
+                        <input type="email" class="form-control" name="emailContacto" value="<?= $datos->email_contacto ?>">
                         <div id="rutHelp" class="form-text">Recuerde caracter fundamental "@".</div>
                     </div>
                     <?php
                     }
                     ?>
 
-                    <!-- Botones modificar contacto -->
-                    <button type="submit" class="btn btn-primary mb-3" name="btnModificar" value="ok">Modificar</button>
+                    <!-- Boton modificar contacto -->
+                    <button type="submit" class="btn btn-primary mb-3" name="btnModificarContacto" value="ok">Modificar</button>
+                    <!-- Boton elimianr contacto TODO revisar si es necesario-->
+                    <!-- <button type="submit" class="btn btn-primary mb-3" name="btnEliminarContacto" value="ok">Eliminar</button> -->
                 </form>
             </div>
             

@@ -30,7 +30,7 @@ $idCotizacion = $_GET["id"];
                 <!-- Formulario de ingreso contactos -->
                 <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                     <!-- Titulo formulario -->
-                    <h2 class="text-center">Ingreso de contactos</h2>
+                    <h2 class="text-center">Ingreso de servicios</h2>
                     <!-- Formulario -->
                     <form class= "row" method="POST">
                         <?php
@@ -39,9 +39,8 @@ $idCotizacion = $_GET["id"];
                         ?>
                         <!-- Casilla id cotizacion -->
                         <div class="mb-3 col-2">
-                            <label for="idCotizacion" class="form-label">Numero</label>
+                            <label for="idCotizacion" class="form-label">Numero cotizacion</label>
                             <input type="text" class="form-control" name="idCotizacion" value="<?= $_GET["id"] ?>" disable readonly>
-                            <!-- <div id="rutHelp" class="form-text">Sin punto y con guion.</div> -->
                         </div>
 
                         <!-- Select option para buscar codigo de tonelaje -->
@@ -71,37 +70,36 @@ $idCotizacion = $_GET["id"];
                         }
                         ?>
 
-                        <!-- Casilla codigo tonelaje -->
-                        <div class="mb-3 col-1">
-                        <label for="" class="form-label"></label>
-                            <input type="hidden" class="form-control" name="codigoTonelaje" value="<?= $insertarInputs->id_tonelaje ?>">
-                        </div>
+
 
                         <!-- Casilla detalle tonelaje -->
                         <div class="mb-3 col-6">
                             <label for="detalleTonelaje" class="form-label">Detalle del tonelaje</label>
                             <input type="text" class="form-control" name="detalleTonelaje" value="<?= $insertarInputs->detalle ?>" disable readonly>
-                            <div id="rutHelp" class="form-text">Ejemplo: Carlos Contreras.</div>
                         </div>
                         <!-- Casilla unidad de medida -->
                         <div class="mb-3 col-4">
-                            <label for="unidadMedida" class="form-label">Unidad</label>
+                            <label for="unidadMedida" class="form-label">Unidad de medida</label>
                             <input type="text" class="form-control" name="unidadMedida" value="<?= $insertarInputs->unidad ?>" disable readonly>
-                            <div id="rutHelp" class="form-text">Maximimo 9 caracteres ejemplo: 912345678.</div>
+                            <div id="rutHelp" class="form-text">Horas o unidades.</div>
                         </div>
                         <!-- Casilla minimo de servicio -->
                         <div class="mb-3 col-4">
-                            <label for="minimoServicio" class="form-label">Minimo</label>
+                            <label for="minimoServicio" class="form-label">Minimo de horas</label>
                             <input type="text" class="form-control" name="minimoServicio" value="<?= $insertarInputs->minimo ?>">
-                            <div id="rutHelp" class="form-text">Recuerde caracter fundamental "@".</div>
+                            <div id="rutHelp" class="form-text">Minimo de horas o unidad del servicio.</div>
                         </div>
                             <!-- Casilla valor del servicio -->
                         <div class="mb-3 col-4">
-                            <label for="valorServicio" class="form-label">Valor</label>
+                            <label for="valorServicio" class="form-label">Valor del servicio</label>
                             <input type="text" class="form-control" name="valorServicio" value="<?= $insertarInputs->valor ?>">
-                            <div id="rutHelp" class="form-text">Recuerde caracter fundamental "@".</div>
+                            <div id="rutHelp" class="form-text">Valor hora o unidad del servicio.</div>
                         </div>
-                        <div>                    
+                        <div>    
+                        <!-- Casilla codigo tonelaje -->
+                        <div>
+                            <input type="hidden" class="form-control" name="codigoTonelaje" value="<?= $insertarInputs->id_tonelaje ?>">
+                        </div>                
                         <!-- Boton registrar contacto -->
                         <button type="submit" class="btn btn-primary mb-3" name="btnIngresarTonelaje" value="ok">Ingresar</button>
                         </div>
@@ -139,8 +137,8 @@ $idCotizacion = $_GET["id"];
                                     <td><?= $datos->minimo ?></td>
                                     <td><?= $datos->valor ?></td>
                                 <td>
-                                    <a class="btn btn-warning" href="contactos_modificar.php?id=<?= $datos->id_contacto ?>"><i class="bi bi-person-fill-gear"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="bi bi-person-dash-fill"></i></a>
+                                    <a class="btn btn-warning" href="cotizacion_modificar.php?id=<?= $datos->id_cotizacion_tonelaje ?>"><i class="bi bi-folder-fill"></i></a>
+                                    <a class="btn btn-danger" href=""><i class="bi bi-file-earmark-minus-fill"></i></a>
                                 </td>
                                 </tr>
                             <?php }

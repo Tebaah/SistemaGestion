@@ -1,15 +1,17 @@
 <?php
 
-if(!empty($_POST["btnModificar"]))
+if(!empty($_POST["btnModificarContacto"]))
 {
     if(!empty($_POST["nombreContacto"]) and !empty($_POST["telefonoContacto"]) and !empty($_POST["emailContacto"]))
     {
-        $idContacto = $_POST["idContacto"];
+        $idContactoModificar = $_POST["id"];
         $nombreContacto = $_POST["nombreContacto"];
         $telefonoContacto = $_POST["telefonoContacto"];
         $emailContacto = $_POST["emailContacto"];
 
-        $sql = $conn->query("UPDATE `contactos` SET `nombre`='$nombreContacto',`telefono`='$telefonoContacto',`email`='$emailContacto' WHERE `id_contacto` = $idContacto");
+
+        $sql = $conn->query("UPDATE `contactos` SET `nombre_contacto`='$nombreContacto',`telefono_contacto`='$telefonoContacto',`email_contacto`='$emailContacto' WHERE `id_contacto` = $idContactoModificar ");    
+
         if($sql == 1)
         {
             header("location:clientes.php");

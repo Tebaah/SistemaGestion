@@ -68,6 +68,10 @@ $idEmpresa = $_GET["id"];
             </div>
             <!--Contendor resumen contactos  -->
             <div class="col-xxl-5 m-1">
+                <?php
+                // include "../conexiones/conexion.php";
+                
+                ?>
                 <!-- Tabla de resumen de contactos -->
                 <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
                     <!-- Titulo tabla -->
@@ -94,7 +98,6 @@ $idEmpresa = $_GET["id"];
                                     <td><?= $datos->email_contacto ?></td>
                                 <td>
                                     <a class="btn btn-warning" href="contactos_modificar.php?id=<?= $datos->id_contacto ?>"><i class="bi bi-person-fill-gear"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="bi bi-person-dash-fill"></i></a>
                                 </td>
                                 </tr>
                             <?php }

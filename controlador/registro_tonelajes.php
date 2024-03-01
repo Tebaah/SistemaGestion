@@ -16,11 +16,11 @@ if(!empty($_POST["btnIngresarTonelaje"]))
         $sql = $conn->query(" INSERT INTO `cotizacion_tonelaje`(`id_cotizaciones`, `id_tonelaje`, `detalle`, `unidad`, `minimo`, `valor`) VALUES ('$idCotizacion','$codigoTonelaje','$detalleTonelaje','$unidadMedida','$minimoServicio','$valorServicio')");
         if($sql == 1)
         {
-            echo '<div class="alert alert-success"> Contacto registrado</div>';
+            echo '<div class="alert alert-success"> Servicio registrado</div>';
         }
         else
         {
-            echo '<div class="alert alert-danger"> Contacto no registrada</div>';
+            echo '<div class="alert alert-danger"> Servicio no registrada</div>';
         }
     }
     else
