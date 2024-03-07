@@ -36,10 +36,11 @@ $consulta = $conn->query("SELECT * FROM cotizacion_tonelaje WHERE id_cotizacion_
                     <h2 class="text-center">Modificar informacion</h2>
                     <!-- Formulario -->
                     <form class= "row" method="POST">                         
-                        <input type="text" class="form-control" name="id" value="<?=$idCotizacionTonelaje ?>">                               
+                        <input type="hidden" class="form-control" name="id" value="<?=$idCotizacionTonelaje ?>">                               
                         <?php
                         include "../controlador/modificar_tonelaje.php";
-                        
+                        include "../controlador/eliminar_tonelajes.php";
+
                         while($datos = $consulta->fetch_object()) { ?>
                         <!-- Casilla minimo de servicio -->
                         <div class="mb-3 col-4">
@@ -58,6 +59,7 @@ $consulta = $conn->query("SELECT * FROM cotizacion_tonelaje WHERE id_cotizacion_
                         <div>                    
                         <!-- Boton registrar contacto -->
                         <button type="submit" class="btn btn-primary mb-3" name="btnModificarValores" value="ok">Modificar</button>
+                        <button type="submit" class="btn btn-primary mb-3" name="btnEliminarValores" value="ok">Eliminar</button>
                         </div>
                     </form>
                 </div>            

@@ -11,7 +11,7 @@ if(!empty($_POST["btnModificarValores"]))
         $sql = $conn->query("UPDATE `cotizacion_tonelaje` SET `minimo`='$minimoServicio',`valor`='$valorServicio' WHERE `id_cotizacion_tonelaje` = $idModificar");
         if($sql == 1)
         {
-            header("location:cotizacion.php");
+            echo '<div class="alert alert-success"> Informacion modificada </div>';
         }
         else
         {

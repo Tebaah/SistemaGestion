@@ -1,5 +1,13 @@
 <?php
+include "../conexiones/conexion.php";
 $idCotizacion = $_GET["id"];
+
+// $codigoTonelaje = $conn->query(" SELECT * FROM valor_tonelaje ");
+
+if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
+{
+   $codigoInsertar = $_POST['buscadorCodigo'];
+}
 
 ?>
 
@@ -49,7 +57,7 @@ $idCotizacion = $_GET["id"];
                                 <select class="form-select" name="buscadorCodigo" id="" required>
                                     <option>Selecciona un codigo</option>
                                     <?php
-                                        $codigoTonelaje = $conn->query(" SELECT * FROM valor_tonelaje ");
+                                        $codigoTonelaje = $conn->query(" SELECT * FROM valor_tonelaje ");                                        
                                         while($datosTonelaje = $codigoTonelaje->fetch_object()){
                                     ?>
                                     <option value="<?php echo $datosTonelaje->id_tonelaje?>"><?php echo $datosTonelaje->id_tonelaje?></option>
@@ -63,45 +71,45 @@ $idCotizacion = $_GET["id"];
                         <button type="submit" class="btn btn-primary" name="btnBuscar" value="ok"><i class="bi bi-plus-square-fill"></i></button>
                         </div>
                         <?php
-                        if(isset($_POST['btnBuscar']) and !empty($_POST["buscadorCodigo"]))
+                        // Buscamos los datos y los ingresamos en las casillas correspondientes 
+                        if(isset($_POST['btnBuscar']))
                         {
-                            $valorBuscado = $conn->query("SELECT * FROM valor_tonelaje WHERE id_tonelaje LIKE '%$datosTonelaje->id_tonelaje%'");
-                            $insertarInputs = $valorBuscado->fetch_object();
+                            $valorBuscado = $conn->query("SELECT * FROM valor_tonelaje WHERE id_tonelaje LIKE '%$codigoInsertar%'");
+                            $insertarDatos = $valorBuscado->fetch_object();
                         }
                         ?>
-
-
 
                         <!-- Casilla detalle tonelaje -->
                         <div class="mb-3 col-6">
                             <label for="detalleTonelaje" class="form-label">Detalle del tonelaje</label>
-                            <input type="text" class="form-control" name="detalleTonelaje" value="<?= $insertarInputs->detalle ?>" disable readonly>
+                            <input type="text" class="form-control" name="detalleTonelaje" value="<?= $insertarDatos->detalle?>" disable readonly>
                         </div>
                         <!-- Casilla unidad de medida -->
                         <div class="mb-3 col-4">
                             <label for="unidadMedida" class="form-label">Unidad de medida</label>
-                            <input type="text" class="form-control" name="unidadMedida" value="<?= $insertarInputs->unidad ?>" disable readonly>
+                            <input type="text" class="form-control" name="unidadMedida" value="<?= $insertarDatos->unidad?>" disable readonly>
                             <div id="rutHelp" class="form-text">Horas o unidades.</div>
                         </div>
                         <!-- Casilla minimo de servicio -->
                         <div class="mb-3 col-4">
                             <label for="minimoServicio" class="form-label">Minimo de horas</label>
-                            <input type="text" class="form-control" name="minimoServicio" value="<?= $insertarInputs->minimo ?>">
+                            <input type="text" class="form-control" name="minimoServicio" value="<?= $insertarDatos->minimo?>">
                             <div id="rutHelp" class="form-text">Minimo de horas o unidad del servicio.</div>
                         </div>
                             <!-- Casilla valor del servicio -->
                         <div class="mb-3 col-4">
                             <label for="valorServicio" class="form-label">Valor del servicio</label>
-                            <input type="text" class="form-control" name="valorServicio" value="<?= $insertarInputs->valor ?>">
+                            <input type="text" class="form-control" name="valorServicio" value="<?= $insertarDatos->valor?>">
                             <div id="rutHelp" class="form-text">Valor hora o unidad del servicio.</div>
                         </div>
                         <div>    
                         <!-- Casilla codigo tonelaje -->
                         <div>
-                            <input type="hidden" class="form-control" name="codigoTonelaje" value="<?= $insertarInputs->id_tonelaje ?>">
+                            <input type="hidden" class="form-control" name="codigoTonelaje" value="<?= $insertarDatos->id_tonelaje?>">
                         </div>                
                         <!-- Boton registrar contacto -->
                         <button type="submit" class="btn btn-primary mb-3" name="btnIngresarTonelaje" value="ok">Ingresar</button>
+                        <button type="submit" class="btn btn-primary mb-3" name="" value="ok">Actualizar</button>
                         </div>
                     </form>
                 </div>            
@@ -137,8 +145,7 @@ $idCotizacion = $_GET["id"];
                                     <td><?= $datos->minimo ?></td>
                                     <td><?= $datos->valor ?></td>
                                 <td>
-                                    <a class="btn btn-warning" href="cotizacion_modificar.php?id=<?= $datos->id_cotizacion_tonelaje ?>"><i class="bi bi-folder-fill"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="bi bi-file-earmark-minus-fill"></i></a>
+                                    <a class="btn btn-warning" href="cotizacion_modificar.php?id=<?= $datos->id_cotizacion_tonelaje ?>" target="_blank"><i class="bi bi-folder-fill"></i></a>
                                 </td>
                                 </tr>
                             <?php }
