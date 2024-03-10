@@ -22,8 +22,11 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
         table {
             font-size: 13px;
         }
-        .tam {
-            font-size: 13px; /* Ajusta este valor a tus necesidades */
+        .textSizeDatos{
+            font-size: 13px;
+        }
+        .textSize {
+            font-size: 10px; /* Ajusta este valor a tus necesidades */
         }
     </style>
     <title>Impresion</title>
@@ -44,12 +47,12 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
         <!-- Fecha de cotizacion -->
         <div class="col-3">
             <label for="fechaCotizacion" class="form-label">Fecha</label>
-            <input type="text" class="form-control tam" name="fechaCotizacion" value="<?= $datosCotizacion->fecha?>">
+            <input type="text" class="form-control textSizeDatos" name="fechaCotizacion" value="<?= $datosCotizacion->fecha?>">
         </div>
         <!-- Numero de cotizacion -->
         <div class="col-3">
             <label for="numeroCotizacion" class="form-label">Número Cotización</label>
-            <input type="text" class="form-control" name="numeroCotizacion" value="<?= $datosCotizacion->id_cotizacion?>">
+            <input type="text" class="form-control textSizeDatos" name="numeroCotizacion" value="<?= $datosCotizacion->id_cotizacion?>">
         </div>
         </section>
 
@@ -58,29 +61,29 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
         <!-- Titulo datosServicios -->
         <h2>Datos cliente</h2>
         <!-- Nombre empresa -->
-        <div class="col-8">
+        <div class="col-9">
             <label for="empresaCotizacion" class="form-label">Razón Social</label>
-            <input type="text" class="form-control" name="empresaCotizacion" value="<?= $datosCotizacion->nombre_empresa?>">
+            <input type="text" class="form-control textSizeDatos" name="empresaCotizacion" value="<?= $datosCotizacion->nombre_empresa?>">
         </div>
         <!-- Rut empresa -->
-        <div class="col-4">
+        <div class="col-3">
             <label for="rutCotizacion" class="form-label">Rut</label>
-            <input type="text" class="form-control" name="rutCotizacion" value="<?= $datosCotizacion->rut_empresa?>">
+            <input type="text" class="form-control textSizeDatos" name="rutCotizacion" value="<?= $datosCotizacion->rut_empresa?>">
         </div>
         <!-- Nombre contacto cotizacion -->
-        <div class="col-8">
+        <div class="col-9">
             <label for="nombreContacto" class="form-label">Contacto</label>
-            <input type="text" class="form-control" name="nombreContacto" value="<?= $datosCotizacion->nombre_contacto?>">
+            <input type="text" class="form-control textSizeDatos" name="nombreContacto" value="<?= $datosCotizacion->nombre_contacto?>">
         </div>        
         <!-- Correo contacto cotizacion -->
-        <div class="col-4">
+        <div class="col-6">
             <label for="correoContacto" class="form-label">Correo</label>
-            <input type="text" class="form-control" name="correoContacto" value="<?= $datosCotizacion->email_contacto?>">
+            <input type="text" class="form-control textSizeDatos" name="correoContacto" value="<?= $datosCotizacion->email_contacto?>">
         </div>
         <!-- Telefono contacto cotizacion -->
         <div class="col-4">
             <label for="telefonoContacto" class="form-label">Telefono</label>
-            <input type="text" class="form-control" name="telefonoContacto" value=<?= $datosCotizacion->telefono_contacto?>>
+            <input type="text" class="form-control textSizeDatos" name="telefonoContacto" value=<?= $datosCotizacion->telefono_contacto?>>
         </div>
     </section>
 
@@ -91,17 +94,17 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
         <!-- Nombre ejecutivo -->
         <div class="col">
             <label for="nombreEjecutivo" class="form-label">Nombre</label>
-            <input type="text" class="form-control" name="nombreEjecutivo" value="<?= $datosCotizacion->nombre?>">
+            <input type="text" class="form-control textSizeDatos" name="nombreEjecutivo" value="<?= $datosCotizacion->nombre?>">
         </div>
         <!-- Telefono ejecutivo -->
         <div class="col">
             <label for="telefonoEjecutivo" class="form-label">Telefono</label>
-            <input type="text" class="form-control" name="telefonoEjecutivo" value=<?= $datosCotizacion->telefono?>>
+            <input type="text" class="form-control textSizeDatos" name="telefonoEjecutivo" value=<?= $datosCotizacion->telefono?>>
         </div>
         <!-- Correo ejecutivo -->
         <div class="col">
             <label for="mailEjecutivo" class="form-label">Mail</label>
-            <input type="text" class="form-control" name="mailEjecutivo" value=<?= $datosCotizacion->correo?>>
+            <input type="text" class="form-control textSizeDatos" name="mailEjecutivo" value=<?= $datosCotizacion->correo?>>
         </div>
     </section>
 
@@ -112,19 +115,22 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
         <!-- Direccion de faena -->
         <div class="col-12">
             <label for="direccionFaena" class="form-label">Direccion Faena</label>
-            <input type="text" class="form-control" name="direccionFaena" value=<?= $datosCotizacion->direccion?>>
+            <input type="text" class="form-control textSizeDatos" name="direccionFaena" value=<?= $datosCotizacion->direccion?>>
         </div>
         <!-- Detalle de la faena -->
         <div class="col-12">
             <label for="detalleFaena" class="form-label">Detalle Faena</label>
-            <input type="text" class="form-control" name="detalleFaena" value="<?= $datosCotizacion->detalle?>">
+            <input type="text" class="form-control textSizeDatos" name="detalleFaena" value="<?= $datosCotizacion->detalle?>">
         </div>
         <!-- Notas de la faena -->
         <div class="col-12">
             <label for="notasFaena" class="form-label">Notas Faena</label>
-            <input type="text" class="form-control" name="notasFaena" value="<?= $datosCotizacion->notas?>">
+            <input type="text" class="form-control textSizeDatos" name="notasFaena" value="<?= $datosCotizacion->notas?>">
         </div>
     </section>
+
+    <!-- Salto de pagina -->
+    <div class="html2pdf__page-break"></div>
 
     <!-- Datos de servicios -->
     <section class="row m-1">
@@ -136,7 +142,7 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
                     <th scope="col">COD.</th>
                     <th scope="col">DETALLE</th>
                     <th scope="col">UNIDAD MEDIDA</th>
-                    <th scope="col">MINIMO UNIDADES</th>
+                    <th scope="col">MINIMO DIARIO</th>
                     <th scope="col">VALOR UNIDAD</th>
                     </tr>
                 </thead>
@@ -149,7 +155,7 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
                             <td><?= $datosServicios->id_tonelaje ?></td>
                             <td><?= $datosServicios->detalle ?></td>
                             <td><?= $datosServicios->unidad ?></td>
-                            <td><?= $datosServicios->minimo ?> diarias </td>
+                            <td><?= $datosServicios->minimo ?></td>
                             <td><?= $datosServicios->valor ?> +IVA.-</td>
                         </tr>
                     <?php }
@@ -160,12 +166,29 @@ $datosCotizacion = $buscarCotizacion->fetch_object();
     </section>
 
     <!-- Observaciones de la faena -->
-    <section>
+    <section class="m-1">
         <h2>Observaciones</h2>
-        <div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut quod sapiente voluptate? Facilis assumenda quam culpa iste quae accusamus excepturi esse libero sed, omnis unde pariatur voluptatem repellendus quis.
-            </p>
+        <!-- Lista de observaciones -->
+        <div class="m-2">
+            <ul class="list-group fs-6">
+                <li class="list-group-item textSize">La hora de la grúa comenzará a regir desde que la máquina sale de nuestras bodegas, hasta el regreso a las mismas.</li>
+                <li class="list-group-item textSize">La Orden de Trabajo y/o Report Diario o Semanal, será proporcionado por Multiservice Grúas y es responsabilidad del cliente el control de la misma, debiendo firmar el Cliente al término de la faena.</li>
+                <li class="list-group-item textSize">Se entenderá por hora Grúa, el tiempo reloj durante el cual estén disponibles para el cliente tanto la Grúa como el Operador.</li>
+                <li class="list-group-item textSize">Cotización considera documentación básica de personal (Contrato, Certificación, Exámenes ocupacionales, EPP, Reglamento Interno, ODI). Documentación adicional debe solicitarse con 24 horas de anticipación. Cualquier omisión en solicitudes de documentación que provoque retrasos en faena serán de cargo de Cliente. Documentación extra puede generar cobros adicionales.</li>
+                <li class="list-group-item textSize">Está estrictamente prohibido realizar maniobras en Tándem con grúas externas a Multiservice Grúas.</li>
+                <li class="list-group-item textSize">Será por cuenta del cliente el traslado de contrapesos durante y dentro del recinto de faena.</li>
+                <li class="list-group-item textSize">Cualquier daño o pérdida que pueda presentarse durante la faena a la grúa, será traspasada a Cliente.</li>
+                <li class="list-group-item textSize">Será responsabilidad del cliente informar sobre la resistencia y condiciones del terreno y/o área de trabajo, en caso contrario, Multiservice Grúas se desliga de cualquier responsabilidad por daños que la Grúa pueda ocasionar.</li>
+                <li class="list-group-item textSize">La tarifa tendrá un recargo de un 30% de Lunes a Viernes a partir de las 18.00 hrs. y los Sábados a partir de las 13.00 hrs. Domingo y Festivos durante todo el día.</li>
+                <li class="list-group-item textSize">La planificación, control y manejo total de la prevención de riesgos será responsabilidad del cliente. Multiservice Grúas acatará en forma integral las políticas preventivas y disposiciones informadas formalmente por parte del cliente.</li>
+                <li class="list-group-item textSize">En caso de que el tonelaje no sea el indicado para hacer el trabajo, el cliente debe cancelar el mínimo de horas y traslados involucrados.</li>
+                <li class="list-group-item textSize">Si por fuerza mayor, ante algún evento inesperado (Grúa encerrada en faena, pannes, congestión del tránsito, etc.), la grúa se ve impedida de llegar en día y hora programada, no corresponderá ningún tipo de descuento ni cobro a Multiservice Grúas. Tampoco corresponderá el endoso de multas o infracciones de cualquier tipo.</li>
+                <li class="list-group-item textSize">La orden de compra debe hacer referencia al número de cotización.</li>
+                <li class="list-group-item textSize">Todos los seguros por riesgos involucrados en faena, son por cuenta del Cliente.</li>
+                <li class="list-group-item textSize">La factura deberá cancelarse a los 30 días de su fecha de emisión como plazo máximo.</li>
+                <li class="list-group-item textSize">La presente Cotización tiene validez de 5 días.</li>
+                <li class="list-group-item textSize">Grúa sujeta a disponibilidad.</li>
+            </ul>
         </div>
     </section>
 </main>

@@ -109,7 +109,7 @@ if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
                         <!-- Boton registrar contacto -->
                         <button type="submit" class="btn btn-primary mb-3" name="btnIngresarTonelaje" value="ok">Ingresar</button>
                         <button type="submit" class="btn btn-primary mb-3" name="" value="ok">Actualizar</button>
-                        <a class="btn btn-primary mb-3" href="impresion_cotizacion.php?id=<?= $idCotizacion ?>">Inprimir</i></a>
+                        <a class="btn btn-primary mb-3" href="impresion_cotizacion.php?id=<?= $idCotizacion ?>" target="_blank">Inprimir</i></a>
                     </form>                
             </section>
             <section class="col-xxl-5 m-1 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
