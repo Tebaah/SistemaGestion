@@ -157,11 +157,6 @@
                         <h2 class="text-center">Buscador de cotizaciones</h2>
                         <!-- Casilla para buscar -->
                             <form method="GET">
-                                <!-- <div class="mb-3 col-4">
-                                    <label for="buscarEmpresa" class="form-label">Buscar Empresa</label>
-                                    <input type="text" class="form-control" name="buscarEmpresa">
-                                    <div id="rutHelp" class="form-text">Sin punto y con guion.</div>
-                                </div> -->
                                 <!-- Boton de busqueda -->
                                 <button type="submit" class="btn btn-primary mb-3" name="btnBuscarCotizacion" value="Buscar">Buscar</button>
                             </form>
@@ -174,7 +169,7 @@
                                 <th scope="col">FECHA</th>
                                 <th scope="col">EMPRESA</th>
                                 <th scope="col">DIRECCION</th>
-                                <th scope="col">INSERTAR TONELAJES</th>
+                                <th scope="col">INSERTAR SERVICIOS</th>
                                 </tr>
                             </thead>
                             <!-- cuerpo de la tabla -->

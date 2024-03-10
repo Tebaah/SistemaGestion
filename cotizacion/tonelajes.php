@@ -16,8 +16,9 @@ if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="../style.css"> -->
     <title>Sistema de Gestion</title>
 </head>
 <body class="bg-dark">
@@ -26,28 +27,26 @@ if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
             <form class="container-fluid justify-content-end">
                 <a class="btn btn-secondary m-1" href="../index.php" role="button">HOME</a>
                 <a class="btn btn-secondary m-1" href="../cotizacion/cotizacion.php" role="button">COTIZACIONES</a>
-                <a class="btn btn-secondary m-1" href="clientes.php" role="button">CLIENTES</a>
+                <a class="btn btn-secondary m-1" href="../empresas_contacto/clientes.php" role="button">CLIENTES</a>
             </form>
             </nav>
     </head>
     <main>
         <!-- Contenedor pagina -->
-        <div class="d-flex row justify-content-center align-items-stretch m-5">
-            <!-- Contenedor ingreso contacto -->
-            <div class="col-xxl-5 m-1">
-                <!-- Formulario de ingreso contactos -->
-                <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
-                    <!-- Titulo formulario -->
-                    <h2 class="text-center">Ingreso de servicios</h2>
-                    <!-- Formulario -->
-                    <form class= "row" method="POST">
+        <section class=" row justify-content-center align-items-start m-2">
+            <!-- Contenedor formulario ingreso de servicios -->
+            <section class="col-xxl-5 m-1 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
+                <!-- Titulo del formulario -->
+                <h2 class="text-center">Ingreso de servicios</h2>
+                <!-- Formulario -->
+                <form class= "row" method="POST">
                         <?php
                         include "../conexiones/conexion.php";
                         include "../controlador/registro_tonelajes.php";
                         ?>
                         <!-- Casilla id cotizacion -->
                         <div class="mb-3 col-2">
-                            <label for="idCotizacion" class="form-label">Numero cotizacion</label>
+                            <label for="idCotizacion" class="form-label">Numero Cot.</label>
                             <input type="text" class="form-control" name="idCotizacion" value="<?= $_GET["id"] ?>" disable readonly>
                         </div>
 
@@ -67,20 +66,20 @@ if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
                         </div>
                         <div class="mb-3 col-1">                  
                         <!-- Boton registrar contacto -->
-                        <label for="" class="form-label">Agregar</label>
-                        <button type="submit" class="btn btn-primary" name="btnBuscar" value="ok"><i class="bi bi-plus-square-fill"></i></button>
-                        </div>
+                        <label for="" class="form-label">Agregar</label>                        
+                        <button type="submit" class="btn btn-primary" name="btnBuscar" value="ok">Agregar</button>
+                        </div>                        
                         <?php
                         // Buscamos los datos y los ingresamos en las casillas correspondientes 
                         if(isset($_POST['btnBuscar']))
-                        {
+                        {                            
                             $valorBuscado = $conn->query("SELECT * FROM valor_tonelaje WHERE id_tonelaje LIKE '%$codigoInsertar%'");
                             $insertarDatos = $valorBuscado->fetch_object();
                         }
                         ?>
 
                         <!-- Casilla detalle tonelaje -->
-                        <div class="mb-3 col-6">
+                        <div class="mb-3 col-8">
                             <label for="detalleTonelaje" class="form-label">Detalle del tonelaje</label>
                             <input type="text" class="form-control" name="detalleTonelaje" value="<?= $insertarDatos->detalle?>" disable readonly>
                         </div>
@@ -110,18 +109,16 @@ if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
                         <!-- Boton registrar contacto -->
                         <button type="submit" class="btn btn-primary mb-3" name="btnIngresarTonelaje" value="ok">Ingresar</button>
                         <button type="submit" class="btn btn-primary mb-3" name="" value="ok">Actualizar</button>
-                        </div>
-                    </form>
-                </div>            
-            </div>
-            <!--Contendor resumen contactos  -->
-            <div class="col-xxl-5 m-1">
-                <!-- Tabla de resumen de contactos -->
-                <div class="col m-1 p-2 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
-                    <!-- Titulo tabla -->
+                        <a class="btn btn-primary mb-3" href="impresion_cotizacion.php?id=<?= $idCotizacion ?>">Inprimir</i></a>
+                    </form>                
+            </section>
+            <section class="col-xxl-5 m-1 bg-dark-subtle border border-5 border-dark-subtle rounded-4">
+                        <!-- Titulo tabla -->
                     <h2 class="text-center">Servicios ingresados</h2>
-                    <!-- Tabla -->
-                    <table class="table">
+                    <!-- Tabla de informacion -->
+                    <div>
+                        <!-- Tabla -->
+                    <table class="table cuerpito">
                         <thead">
                             <tr>
                             <th scope="col">COD. TONELAJE</th>
@@ -129,7 +126,7 @@ if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
                             <th scope="col">UNIDAD MEDIDA</th>
                             <th scope="col">MINIMO</th>
                             <th scope="col">VALOR HORA</th>
-                            <th scope="col"></th>
+                            <th scope="col">MOD</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -152,14 +149,12 @@ if(isset($_POST['btnBuscar']) and isset($_POST['buscadorCodigo']))
                             ?>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-            
-
+                    </div>
+            </section>
+        </section>      
     </main>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
